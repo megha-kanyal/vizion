@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaThumbsUp, FaCommentDots, FaPaperPlane } from "react-icons/fa";
-import Navbar from "../components/Navbar";
+import Navbar from "../Components/Navbar";
 
 const Forums = () => {
   const [posts, setPosts] = useState([

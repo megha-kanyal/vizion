@@ -22,6 +22,9 @@ function App() {
         <Route path="/internship" element={<Internship />} />
         <Route path="/alumini" element={<Alumini />} />
         <Route path="/profile" element={<Profile />} />
+<<<<<<< HEAD
+        <Route path="/techtalks" element={<Techtalks/>} />
+=======
         <Route path="/tecktalks" element={<Techtalks/>} />
 <<<<<<< HEAD
     
