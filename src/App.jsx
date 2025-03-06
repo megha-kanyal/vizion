@@ -7,6 +7,8 @@ import Events from './pages/Events';
 import Internship from './pages/Internship';
 import Alumini from './pages/Alumini';
 import Profile from './pages/Profile';
+import Techtalks from './pages/Techtalks';
+import Mentorship from './pages/Mentorship';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/internship" element={<Internship />} />
         <Route path="/alumini" element={<Alumini />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/tecktalks" element={<Techtalks/>} />
+        <Route path="/mentorship" element={<Mentorship/>} />
       </Routes>
     </Router>
   );
