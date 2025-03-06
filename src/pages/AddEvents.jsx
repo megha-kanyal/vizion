@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // ✅ Import axios
 
 export default function AddEvents() {
   const [formData, setFormData] = useState({
@@ -14,10 +15,23 @@ export default function AddEvents() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); // Replace with API call to save event data
-    alert("Event added successfully! 🎉");
+    try {
+      const response = await axios.post("http://localhost:5000/api/events/add", formData); // ✅ Corrected endpoint
+      alert(response.data.message);
+      setFormData({
+        eventName: "",
+        eventDate: "",
+        eventTime: "",
+        location: "",
+        eventType: "",
+        description: "",
+      });
+    } catch (error) {
+      console.error("Error adding event:", error);
+      alert("Error adding event. Please try again.");
+    }
   };
 
   return (
