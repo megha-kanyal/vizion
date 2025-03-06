@@ -24,7 +24,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/techtalks" element={<Techtalks/>} />
 
-
         <Route path='/addevents' element={<AddEvents/>}/> 
         <Route path='/CreateJobs' element={<CreateJobs/>}/>
       </Routes>
