@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Efilters from "../Components/Efilters"; 
+import Efilters from "../Components/Efilters";
+import { Calendar, MapPin, User, Clock } from "lucide-react";
 
 export default function Events() {
   const mockEvents = [
@@ -11,6 +12,18 @@ export default function Events() {
   ];
 
   const [filteredEvents, setFilteredEvents] = useState(mockEvents);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  // Function to format date
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      weekday: 'short', 
+      month: 'short', 
+      day: 'numeric', 
+      year: 'numeric' 
+    });
+  };
 
   // Function to filter events
   const handleFilterChange = (filters) => {
@@ -40,43 +53,149 @@ export default function Events() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-800 text-white p-6">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
       {/* Left Side - Filters Section */}
-      <div className="w-1/3 mr-6">
+      <div className="w-full md:w-1/4 p-4 bg-white shadow-md">
+        <h2 className="text-xl font-bold mb-4 text-gray-800">Filters</h2>
         <Efilters onFilterChange={handleFilterChange} />
       </div>
 
-      {/* Right Side - Events Section */}
-      <div className="flex-1 bg-gray-900 p-6 rounded-lg">
-        <h1 className="text-2xl font-bold mb-4">Events</h1>
+      {/* Middle - Events Section */}
+      <div className="flex-1 p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold text-gray-800">Upcoming Events</h1>
+          <span className="bg-teal-500 text-white px-3 py-1 rounded-full text-sm">
+            {filteredEvents.length} Events Found
+          </span>
+        </div>
 
         {/* Event Cards Layout */}
-        <EventCards events={filteredEvents} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {filteredEvents.length > 0 ? (
+            filteredEvents.map((event) => (
+              <div 
+                key={event.id} 
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                onClick={() => setSelectedEvent(event)}
+              >
+                <div className="bg-teal-500 h-1 w-full"></div>
+                <div className="p-6">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-3">{event.name}</h2>
+                  
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center text-gray-600">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      <span>{formatDate(event.date)}</span>
+                    </div>
+                    
+                    <div className="flex items-center text-gray-600">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      <span>{event.venue}</span>
+                    </div>
+                    
+                    <div className="flex items-center text-gray-600">
+                      <User className="w-4 h-4 mr-2" />
+                      <span>{event.speaker}</span>
+                    </div>
+                  </div>
+                  
+                  <button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 flex items-center justify-center">
+                    Register Now
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12 bg-white rounded-lg shadow">
+              <div className="text-gray-400 mb-2">
+                <Calendar className="w-12 h-12 mx-auto opacity-50" />
+              </div>
+              <p className="text-lg text-gray-500">No events match your search criteria</p>
+              <button 
+                className="mt-4 text-teal-500 hover:text-teal-600"
+                onClick={() => handleFilterChange({})}
+              >
+                Clear filters
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
-}
 
-// Event Cards Component
-const EventCards = ({ events }) => {
-  return (
-    <div className="grid gap-5">
-      {events.length > 0 ? (
-        events.map((event) => (
-          <div key={event.id} className="bg-[#2F2F2F] text-[#FFCB74] p-4 rounded-md">
-            <h2 className="text-xl font-semibold">{event.name}</h2>
-            <p><strong>Venue</strong> - {event.venue}</p>
-            <p><strong>DATE/TIME</strong> - {event.date}</p>
-            <p><strong>Speaker</strong> - {event.speaker}</p>
-            <button className="bg-[#FFCB74] text-black px-4 py-2 mt-2 rounded-md">
-              Apply Now
-            </button>
+      {/* Event Detail Modal */}
+      {selectedEvent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-screen overflow-auto">
+            <div className="bg-teal-500 p-4 text-white flex justify-between items-center">
+              <h3 className="text-xl font-bold">{selectedEvent.name}</h3>
+              <button 
+                onClick={() => setSelectedEvent(null)}
+                className="text-white hover:text-gray-200"
+              >
+                ×
+              </button>
+            </div>
+            
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="flex items-start">
+                  <Calendar className="w-5 h-5 mr-3 text-teal-500 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-gray-700">Date and Time</h4>
+                    <p className="text-gray-600">{formatDate(selectedEvent.date)}</p>
+                    <p className="text-gray-600">9:00 AM - 5:00 PM</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <MapPin className="w-5 h-5 mr-3 text-teal-500 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-gray-700">Venue</h4>
+                    <p className="text-gray-600">{selectedEvent.venue}</p>
+                    <p className="text-gray-600">Main Campus, Floor 2</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <User className="w-5 h-5 mr-3 text-teal-500 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-gray-700">Speaker</h4>
+                    <p className="text-gray-600">{selectedEvent.speaker}</p>
+                    <p className="text-gray-600">Senior Technology Expert</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <Clock className="w-5 h-5 mr-3 text-teal-500 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-gray-700">Duration</h4>
+                    <p className="text-gray-600">8 hours</p>
+                    <p className="text-gray-600">Includes lunch break</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mb-6">
+                <h4 className="font-semibold text-gray-700 mb-2">About This Event</h4>
+                <p className="text-gray-600">
+                  Join us for this exciting event where industry experts will share insights
+                  and knowledge on the latest trends and innovations. This event is perfect for
+                  professionals looking to expand their skills and network with peers.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4"> 
+                <button className="flex-1 bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-6 rounded-md transition-colors duration-300">
+                  Register Now
+                </button>
+                <button className="flex-1 border border-teal-500 text-teal-500 hover:bg-teal-50 font-medium py-3 px-6 rounded-md transition-colors duration-300">
+                  Save for Later
+                </button>
+              </div>
+            </div>
           </div>
-        ))
-      ) : (
-        <p className="text-center text-gray-400">No events found</p>
+        </div>
       )}
     </div>
   );
-};
-
+}
