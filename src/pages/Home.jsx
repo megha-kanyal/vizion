@@ -11,7 +11,7 @@ const LandingPage = () => {
 
   return (
    
-    <div className="flex flex-col min-h-screen bg-[#2F2F2F] text-white">
+    <div className="flex flex-col min-h-screen bg-[#1e293b] text-white">
   <Navbar/>
       <div className="relative h-[66vh] mb-4 overflow-hidden">
         {/* Background Image with subtle zoom animation - Keeping the original image */}
@@ -60,7 +60,7 @@ const LandingPage = () => {
 
       {/* What We Offer Section */}
       <motion.div 
-        className="px-6 py-16 bg-[#2F2F2F]"
+        className="px-6 py-16 bg-[#1e293b]"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
@@ -74,7 +74,7 @@ const LandingPage = () => {
           {Array.from({ length: 6 }).map((_, index) => (
             <motion.div 
               key={index} 
-              className="bg-black p-6 rounded"
+              className="bg-white p-6 rounded"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -90,10 +90,10 @@ const LandingPage = () => {
                   transition={{ duration: 0.5 }}
                 />
               </div>
-              <h3 className="text-xl font-semibold text-[#FFCB74] mb-4">
+              <h3 className="text-xl font-semibold text-slate-900 mb-4">
                 One to One Interaction
               </h3>
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-black">
                 What We Offer: Idesigns, illustrations, and graphic elements
                 from the world's best designers. Want more inspiration?
               </p>
@@ -144,7 +144,7 @@ const LandingPage = () => {
 
       {/* Testimonials */}
       <motion.div 
-        className="px-4 py-16 bg-[#2F2F2F]"
+        className="px-4 py-16 bg-[#1e293b]"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
