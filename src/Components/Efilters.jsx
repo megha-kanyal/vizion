@@ -1,123 +1,103 @@
 import React, { useState } from "react";
 
-const AlumConnectFilters = () => {
+const Efilters = ({ onFilterChange }) => {
   const [filters, setFilters] = useState({
-    graduationYear: "",
-    department: "",
-    jobRole: "",
-    customJobRole: "", // New state for custom job role
-    experienceLevel: "",
-    techStack: "",
-    organisation: "",
-    availability: []
+    search: "",
+    dateRange: "",
+    venue: "",
+    speaker: "",
   });
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFilters({ ...filters, [name]: value });
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   };
 
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      availability: checked
-        ? [...prevFilters.availability, name]
-        : prevFilters.availability.filter((item) => item !== name)
-    }));
+  // Apply filters
+  const applyFilters = () => {
+    onFilterChange(filters);
   };
 
-  const handleReset = () => {
-    setFilters({
-      graduationYear: "",
-      department: "",
-      jobRole: "",
-      customJobRole: "",
-      experienceLevel: "",
-      techStack: "",
-      organisation: "",
-      availability: []
-    });
+  // Reset all filters
+  const resetFilters = () => {
+    const resetValues = { search: "", dateRange: "", venue: "", speaker: "" };
+    setFilters(resetValues);
+    onFilterChange(resetValues);
   };
 
   return (
-    <div className="bg-gray-900 text-white p-6 rounded-lg w-96">
-      <h2 className="text-xl font-bold mb-4">Filters</h2>
-      
-      {/* Graduation Year */}
-      <label className="block">Graduation Year</label>
-      <input type="number" name="graduationYear" value={filters.graduationYear} onChange={handleChange} className="w-full p-2 mb-3 rounded bg-gray-700" />
-      
-      {/* Department */}
-      <label className="block">Department</label>
-      <input type="text" name="department" value={filters.department} onChange={handleChange} className="w-full p-2 mb-3 rounded bg-gray-700" />
-      
-      {/* Job Role */}
-      <label className="block">Current Job Role</label>
-      <select name="jobRole" value={filters.jobRole} onChange={handleChange} className="w-full p-2 mb-3 rounded bg-gray-700">
-        <option value="">Select</option>
-        <option value="Software Engineer">Software Engineer</option>
-        <option value="Data Scientist">Data Scientist</option>
-        <option value="Product Manager">Product Manager</option>
-        <option value="Researcher">Researcher</option>
-        <option value="Consultant">Consultant</option>
-        <option value="Entrepreneur">Entrepreneur</option>
-        <option value="Other">Other</option>
-      </select>
+    <div className="bg-gray-900 p-6 rounded-lg shadow-lg text-white">
+      <h2 className="text-xl font-bold mb-4">Filter Events</h2>
 
-      {/* Custom Job Role Input Field (only when 'Other' is selected) */}
-      {filters.jobRole === "Other" && (
+      {/* Search by Event Name */}
+      <div className="mb-4">
+        <label className="block mb-1 font-semibold">🔍 Search Event</label>
         <input
           type="text"
-          name="customJobRole"
-          value={filters.customJobRole}
+          name="search"
+          placeholder="Enter event name..."
+          value={filters.search}
           onChange={handleChange}
-          placeholder="Enter your job role"
-          className="w-full p-2 mb-3 rounded bg-gray-700"
+          className="w-full p-2 bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
         />
-      )}
-      
-      {/* Experience Level */}
-      <label className="block">Experience Level</label>
-      <select name="experienceLevel" value={filters.experienceLevel} onChange={handleChange} className="w-full p-2 mb-3 rounded bg-gray-700">
-        <option value="">Select</option>
-        <option value="Entry-Level">Entry-Level</option>
-        <option value="Mid-Level">Mid-Level</option>
-        <option value="Senior-Level">Senior-Level</option>
-        <option value="Executive">Executive</option>
-      </select>
-      
-      {/* Tech Stack & Skills */}
-      <label className="block">Tech Stack and Skills</label>
-      <input type="text" name="techStack" value={filters.techStack} onChange={handleChange} className="w-full p-2 mb-3 rounded bg-gray-700" placeholder="e.g., React, Python, AWS" />
-      
-      {/* Organisation */}
-      <label className="block">Organisation</label>
-      <input type="text" name="organisation" value={filters.organisation} onChange={handleChange} className="w-full p-2 mb-3 rounded bg-gray-700" />
-      
-      {/* Availability */}
-      <label className="block mb-2">Availability</label>
-      <div className="mb-3">
-        {["Open to Mentorship", "Open to Networking", "Open to Hiring", "Available for Guest Lectures"].map((option) => (
-          <label key={option} className="block">
-            <input
-              type="checkbox"
-              name={option}
-              checked={filters.availability.includes(option)}
-              onChange={handleCheckboxChange}
-              className="mr-2"
-            />
-            {option}
-          </label>
-        ))}
+      </div>
+
+      {/* Date Filter */}
+      <div className="mb-4">
+        <label className="block mb-1 font-semibold">📅 Date</label>
+        <input
+          type="date"
+          name="dateRange"
+          value={filters.dateRange}
+          onChange={handleChange}
+          className="w-full p-2 bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        />
+      </div>
+
+      {/* Venue Filter */}
+      <div className="mb-4">
+        <label className="block mb-1 font-semibold">📍 Venue</label>
+        <select
+          name="venue"
+          value={filters.venue}
+          onChange={handleChange}
+          className="w-full p-2 bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        >
+          <option value="">All Venues</option>
+          <option value="Auditorium A">Auditorium A</option>
+          <option value="Lab 2">Lab 2</option>
+          <option value="Hall 3">Hall 3</option>
+          <option value="Main Hall">Main Hall</option>
+          <option value="Room 101">Room 101</option>
+        </select>
+      </div>
+
+      {/* Speaker Filter */}
+      <div className="mb-4">
+        <label className="block mb-1 font-semibold">🎤 Speaker</label>
+        <input
+          type="text"
+          name="speaker"
+          placeholder="Enter speaker name..."
+          value={filters.speaker}
+          onChange={handleChange}
+          className="w-full p-2 bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        />
       </div>
 
       {/* Buttons */}
-      <div className="flex justify-between mt-4">
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
+      <div className="flex justify-between">
+        <button
+          onClick={applyFilters}
+          className="w-1/2 bg-yellow-500 text-black font-semibold p-2 rounded-md hover:bg-yellow-600 transition duration-300 mr-2"
+        >
           Apply Filters
         </button>
-        <button onClick={handleReset} className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
+        <button
+          onClick={resetFilters}
+          className="w-1/2 bg-red-500 text-white font-semibold p-2 rounded-md hover:bg-red-600 transition duration-300"
+        >
           Reset
         </button>
       </div>
@@ -125,4 +105,4 @@ const AlumConnectFilters = () => {
   );
 };
 
-export default AlumConnectFilters;
+export default Efilters;
