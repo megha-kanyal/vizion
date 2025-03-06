@@ -23,6 +23,9 @@ function App() {
         <Route path="/alumini" element={<Alumini />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/tecktalks" element={<Techtalks/>} />
+<<<<<<< HEAD
+    
+=======
         
         <Route path='/addevents' element={<AddEvents/>}/> 
         <Route path='/CreateJobs' element={<CreateJobs/>}/>
