@@ -23,7 +23,11 @@ function App() {
         <Route path="/alumini" element={<Alumini />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/tecktalks" element={<Techtalks/>} />
+<<<<<<< HEAD
     
+=======
+        
+>>>>>>> 10923de42df3d233b3909b08965bc1ff45f2cabe
         <Route path='/addevents' element={<AddEvents/>}/> 
         <Route path='/CreateJobs' element={<CreateJobs/>}/>
       </Routes>
