@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function AddEventsPage() {
+export default function AddEvents() {
   const [formData, setFormData] = useState({
     eventName: "",
     eventDate: "",
