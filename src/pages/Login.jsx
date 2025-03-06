@@ -15,8 +15,6 @@ const Login = () => {
           <>
             <input type="text" placeholder="Full Name" className="w-full p-2 border rounded" required />
             <input type="number" placeholder="Graduation Year" className="w-full p-2 border rounded" required />
-
-
             <select className="w-full p-2 border rounded" onChange={(e) => setStatus(e.target.value)}>
               <option>Student</option>
               <option>Alumni</option>
