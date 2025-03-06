@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-export default function AddEvents() {
+export default function AddEventsPage() {
   const [formData, setFormData] = useState({
-    companyName: '',
-    experience: '',
-    role: '',
-    qualification: '',
-    location: '',
-    jobType: '',
-    description: '',
+    eventName: "",
+    eventDate: "",
+    eventTime: "",
+    location: "",
+    eventType: "",
+    description: "",
   });
 
   const handleChange = (e) => {
@@ -17,82 +16,75 @@ export default function AddEvents() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); // Replace this with API call to save data
-    alert('Internship/Job event added successfully!');
+    console.log(formData); // Replace with API call to save event data
+    alert("Event added successfully! 🎉");
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-6">
-      <div className="max-w-lg w-full bg-white/20 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/10">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">🚀 Add Internship/Job Opportunity</h2>
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 p-6">
+      <div className="max-w-xl w-full bg-white/20 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-white/10">
+        <h2 className="text-3xl font-bold text-center text-white mb-6">
+          🎉 Add New Event
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input 
-            type="text" 
-            name="companyName" 
-            placeholder="🏢 Company Name" 
-            value={formData.companyName} 
-            onChange={handleChange} 
-            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-pink-400"
+          <input
+            type="text"
+            name="eventName"
+            placeholder="📌 Event Name"
+            value={formData.eventName}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-blue-400"
             required
           />
-          <input 
-            type="number" 
-            name="experience" 
-            placeholder="⏳ Years of Experience" 
-            value={formData.experience} 
-            onChange={handleChange} 
-            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-pink-400"
+          <input
+            type="date"
+            name="eventDate"
+            value={formData.eventDate}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-blue-400"
             required
           />
-          <input 
-            type="text" 
-            name="role" 
-            placeholder="💼 Internship/Job Role" 
-            value={formData.role} 
-            onChange={handleChange} 
-            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-pink-400"
+          <input
+            type="time"
+            name="eventTime"
+            value={formData.eventTime}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-blue-400"
             required
           />
-          <input 
-            type="text" 
-            name="qualification" 
-            placeholder="🎓 Qualification Required" 
-            value={formData.qualification} 
-            onChange={handleChange} 
-            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-pink-400"
+          <input
+            type="text"
+            name="location"
+            placeholder="📍 Location"
+            value={formData.location}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-blue-400"
             required
           />
-          <input 
-            type="text" 
-            name="location" 
-            placeholder="📍 Job Location" 
-            value={formData.location} 
-            onChange={handleChange} 
-            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-pink-400"
-          />
-          <select 
-            name="jobType" 
-            value={formData.jobType} 
-            onChange={handleChange} 
-            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white focus:ring-2 focus:ring-pink-400"
+          <select
+            name="eventType"
+            value={formData.eventType}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white focus:ring-2 focus:ring-blue-400"
             required
           >
-            <option value="">Select Job Type</option>
-            <option value="Internship">Internship</option>
-            <option value="Full-Time">Full-Time</option>
-            <option value="Part-Time">Part-Time</option>
-            <option value="Remote">Remote</option>
+            <option value="">Select Event Type</option>
+            <option value="Workshop">🛠️ Workshop</option>
+            <option value="Seminar">🎤 Seminar</option>
+            <option value="Internship">💼 Internship</option>
+            <option value="Webinar">💻 Webinar</option>
+            <option value="Networking">🤝 Networking</option>
           </select>
-          <textarea 
-            name="description" 
-            placeholder="📝 Job Description" 
-            value={formData.description} 
-            onChange={handleChange} 
-            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-pink-400 h-24"
+          <textarea
+            name="description"
+            placeholder="📝 Event Description"
+            value={formData.description}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white placeholder-white focus:ring-2 focus:ring-blue-400 h-24"
           />
-          <button 
-            type="submit" 
-            className="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+          <button
+            type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
           >
             🚀 Add Event
           </button>
