@@ -20,7 +20,6 @@ export default function Testimonials() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
-          markers: true, // Debugging marker
           toggleActions: "play none none none",
           scrub:true
         },
