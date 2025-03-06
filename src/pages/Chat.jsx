@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:3000"); // Ensure this matches your backend
+const socket = io("http://localhost:3000"); // Ensure backend runs on port 3000
 
-const SocketComponent = () => {
+const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     socket.on("chat-message", (data) => {
@@ -25,9 +27,11 @@ const SocketComponent = () => {
   };
 
   return (
-    <div className="p-4 bg-gray-800 text-white rounded-lg w-full">
-      <h2 className="text-xl font-bold mb-2">Live Chat</h2>
-      <div className="h-60 overflow-y-auto p-2 border border-gray-600 rounded-md mb-2">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-6">
+      <h2 className="text-2xl font-bold mb-4">Live Chat</h2>
+
+      {/* Chat Box */}
+      <div className="h-60 w-96 overflow-y-auto p-2 border border-gray-600 rounded-md mb-2">
         {messages.map((msg, index) => (
           <div key={index} className={`text-sm ${msg.sender === "You" ? "text-blue-400" : "text-yellow-400"}`}>
             <strong>{msg.sender}:</strong> {msg.text}
@@ -35,7 +39,8 @@ const SocketComponent = () => {
         ))}
       </div>
 
-      <form onSubmit={sendMessage} className="flex">
+      {/* Message Input */}
+      <form onSubmit={sendMessage} className="flex w-96">
         <input
           type="text"
           className="flex-1 p-2 rounded-lg bg-gray-700 text-white"
@@ -45,8 +50,16 @@ const SocketComponent = () => {
         />
         <button type="submit" className="ml-2 bg-blue-500 px-4 py-2 rounded-lg text-white">Send</button>
       </form>
+
+      {/* Back to Profile Button */}
+      <button
+        onClick={() => navigate("/")}
+        className="mt-4 bg-gray-700 px-4 py-2 rounded-lg text-white"
+      >
+        Back to Profile
+      </button>
     </div>
   );
 };
 
-export default SocketComponent;
+export default Chat;
