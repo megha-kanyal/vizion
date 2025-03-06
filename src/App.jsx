@@ -8,7 +8,6 @@ import Internship from './pages/Internship';
 import Alumini from './pages/Alumini';
 import Profile from './pages/Profile';
 import Techtalks from './pages/Techtalks';
-import Mentorship from './pages/Mentorship';
 import AddEvents from './pages/AddEvents';
 import CreateJobs from './pages/CreateJobs';
 
@@ -23,8 +22,16 @@ function App() {
         <Route path="/internship" element={<Internship />} />
         <Route path="/alumini" element={<Alumini />} />
         <Route path="/profile" element={<Profile />} />
+<<<<<<< HEAD
+
         <Route path="/tecktalks" element={<Techtalks/>} />
-        <Route path="/mentorship" element={<Mentorship/>} />
+
+    
+=======
+        <Route path="/techtalks" element={<Techtalks/>} />
+
+
+>>>>>>> 3c4e3c56ef95cb46d24595a27ffbe03b550767f8
         <Route path='/addevents' element={<AddEvents/>}/> 
         <Route path='/CreateJobs' element={<CreateJobs/>}/>
       </Routes>
