@@ -1,14 +1,27 @@
-import { useState } from 'react'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Events from './pages/Events';
+import Internship from './pages/Internship';
+import Alumini from './pages/Alumini';
+import Profile from './pages/Profile';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className='bg-yellow-500'>
-      <h1 className='text-xl'>hello world</h1>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/internship" element={<Internship />} />
+        <Route path="/alumini" element={<Alumini />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
