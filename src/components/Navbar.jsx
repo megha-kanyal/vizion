@@ -10,7 +10,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='bg-[##1e293b] py-4'>
+    <nav className='bg-[#1e293b] py-4'>
       <div className='container mx-auto px-4'>
         <div className='flex items-center justify-between'>
           <div className='bg-[#FFCB74] h-12 w-12 rounded-full'></div> 
