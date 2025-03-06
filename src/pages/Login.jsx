@@ -16,30 +16,9 @@ const Login = () => {
       <form className="space-y-4">
         {isRegister && (
           <>
-<<<<<<< HEAD
-            <input 
-              type="text" 
-              placeholder="Full Name" 
-              className="w-full bg-white p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#42b6b5] focus:border-[#42b6b5] outline-none" 
-              required 
-            />
-            
-            <input 
-              type="number" 
-              placeholder="Graduation Year" 
-              className="w-full p-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#42b6b5] focus:border-[#42b6b5] outline-none" 
-              required 
-            />
-
-            <select 
-              className="w-full p-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#42b6b5] focus:border-[#42b6b5] outline-none" 
-              onChange={(e) => setStatus(e.target.value)}
-            >
-=======
             <input type="text" placeholder="Full Name" className="w-full p-2 border rounded" required />
             <input type="number" placeholder="Graduation Year" className="w-full p-2 border rounded" required />
             <select className="w-full p-2 border rounded" onChange={(e) => setStatus(e.target.value)}>
->>>>>>> 3c4e3c56ef95cb46d24595a27ffbe03b550767f8
               <option>Student</option>
               <option>Alumni</option>
             </select>

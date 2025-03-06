@@ -13,7 +13,10 @@ const Navbar = () => {
     <nav className='bg-[#1e293b] py-4'>
       <div className='container mx-auto px-4'>
         <div className='flex items-center justify-between'>
-          <div className='bg-[#FFCB74] h-12 w-12 rounded-full'></div> 
+        <div className='h-15 w-15 rounded-full flex items-center justify-center overflow-hidden'>
+          <img src="/public/Vizion logoNOBG.png" alt="Profile" className="h-full w-full object-cover" />
+        </div>
+ 
           <ul className='text-white hidden md:flex space-x-6'>
             <li className='hover:text-white transition-colors'>
               <Link to="/internship">Job/Internship Opportunities</Link>
