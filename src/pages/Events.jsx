@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Efilters from "../Components/Efilters";
-import { Calendar, MapPin, User, Clock } from "lucide-react";
+import {Link} from 'react-router-dom'
+import AddEvents from "./AddEvents";
 
+import { Calendar, MapPin, User, Clock } from "lucide-react";
 export default function Events() {
   const mockEvents = [
     { id: 1, name: "Tech Summit 2025", venue: "Auditorium A", date: "2025-03-10", speaker: "Dr. John Doe" },
@@ -9,11 +11,9 @@ export default function Events() {
     { id: 3, name: "Startup Pitch Night", venue: "Hall 3", date: "2025-03-20", speaker: "Bob Johnson" },
     { id: 4, name: "Cybersecurity Conference", venue: "Main Hall", date: "2025-03-25", speaker: "Charlie Brown" },
     { id: 5, name: "Blockchain & Web3 Meetup", venue: "Room 101", date: "2025-03-30", speaker: "David White" },
-  ];
-
+  ]
   const [filteredEvents, setFilteredEvents] = useState(mockEvents);
   const [selectedEvent, setSelectedEvent] = useState(null);
-
   // Function to format date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -24,7 +24,6 @@ export default function Events() {
       year: 'numeric' 
     });
   };
-
   // Function to filter events
   const handleFilterChange = (filters) => {
     let filtered = mockEvents;
@@ -34,24 +33,19 @@ export default function Events() {
         event.name.toLowerCase().includes(filters.search.toLowerCase())
       );
     }
-
     if (filters.dateRange) {
       filtered = filtered.filter(event => event.date === filters.dateRange);
     }
-
     if (filters.venue) {
       filtered = filtered.filter(event => event.venue === filters.venue);
     }
-
     if (filters.speaker) {
       filtered = filtered.filter(event =>
         event.speaker.toLowerCase().includes(filters.speaker.toLowerCase())
       );
     }
-
     setFilteredEvents(filtered);
   };
-
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
       {/* Left Side - Filters Section */}
@@ -59,16 +53,21 @@ export default function Events() {
         <h2 className="text-xl font-bold mb-4 text-gray-800">Filters</h2>
         <Efilters onFilterChange={handleFilterChange} />
       </div>
-
       {/* Middle - Events Section */}
       <div className="flex-1 p-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Upcoming Events</h1>
-          <span className="bg-teal-500 text-white px-3 py-1 rounded-full text-sm">
+          <div className="">
+          <span className="bg-teal-500 mx-3 text-white px-3 py-1 rounded-full text-sm">
             {filteredEvents.length} Events Found
           </span>
-        </div>
+          {/* button link */}
+         
+              <Link to="/addevents" className="bg-teal-500 text-white px-4 py-2 rounded-md">Add Events</Link>
 
+          </div>
+        
+        </div>
         {/* Event Cards Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {filteredEvents.length > 0 ? (
