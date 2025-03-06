@@ -9,6 +9,7 @@ import Alumini from './pages/Alumini';
 import Profile from './pages/Profile';
 import Techtalks from './pages/Techtalks';
 import Mentorship from './pages/Mentorship';
+import AddEvents from './pages/AddEvents';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/tecktalks" element={<Techtalks/>} />
         <Route path="/mentorship" element={<Mentorship/>} />
+        <Route path='/addevents' element={<AddEvents/>}/>
       </Routes>
     </Router>
   );
