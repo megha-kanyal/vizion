@@ -6,9 +6,12 @@ import Signup from './pages/Signup';
 import Events from './pages/Events';
 import Internship from './pages/Internship';
 import Alumini from './pages/Alumini';
-import Profile from './pages/Profile';
+import SProfile from './pages/SProfile';
 import Techtalks from './pages/Techtalks';
+
 import Chat from "./pages/Chat";
+
+import AddEvents from './pages/AddEvents';
 
 function App() {
   return (
@@ -20,9 +23,10 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/internship" element={<Internship />} />
         <Route path="/alumini" element={<Alumini />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/sprofile" element={<SProfile />} />
         <Route path="/tecktalks" element={<Techtalks/>} />
         <Route path="/chat" element={<Chat />} />
+        <Route path='/addevents' element={<AddEvents/>}/>
       </Routes>
     </Router>
   );

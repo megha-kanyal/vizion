@@ -49,16 +49,20 @@ export default function Afilters({ applyFilters }) {
   };
 
   return (
-    <div className="bg-gray-900 text-white p-6 rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Filters</h2>
 
-      <label className="block">Graduation Year</label>
+    <div className=" text-white p-6 rounded-lg bg-[#42b6b5]">
+      <h2 className="text-xl font-bold mb-4 text-[#1e293b]">Filters</h2>
+
+      <label className="block ">Graduation Year</label>
+
       <input
         type="number"
         name="graduationYear"
         value={filters.graduationYear}
         onChange={handleChange}
-        className="w-full p-2 mb-3 rounded bg-gray-700"
+
+        className="w-full p-2 mb-3 rounded bg-white text-black"
+
         placeholder="Enter year"
       />
 
@@ -68,7 +72,8 @@ export default function Afilters({ applyFilters }) {
         name="department"
         value={filters.department}
         onChange={handleChange}
-        className="w-full p-2 mb-3 rounded bg-gray-700"
+
+        className="w-full p-2 mb-3 rounded bg-white text-black"
         placeholder="e.g., CSE, ECE"
       />
 
@@ -78,7 +83,9 @@ export default function Afilters({ applyFilters }) {
         name="jobRole"
         value={filters.jobRole}
         onChange={handleChange}
-        className="w-full p-2 mb-3 rounded bg-gray-700"
+
+        className="w-full p-2 mb-3 rounded bg-white text-black"
+
         placeholder="e.g., Software Engineer"
       />
 
@@ -87,7 +94,9 @@ export default function Afilters({ applyFilters }) {
         name="experienceLevel"
         value={filters.experienceLevel}
         onChange={handleChange}
-        className="w-full p-2 mb-3 rounded bg-gray-700"
+
+        className="w-full p-2 mb-3 rounded bg-white text-black"
+
       >
         <option value="">Select</option>
         <option value="Entry-Level">Entry-Level</option>
@@ -102,7 +111,7 @@ export default function Afilters({ applyFilters }) {
         value={filters.techStack}
         onChange={handleChange}
         placeholder="e.g., React, Python"
-        className="w-full p-2 mb-3 rounded bg-gray-700"
+        className="w-full p-2 mb-3 rounded bg-white text-black"
       />
 
       <label className="block">Organisation</label>
@@ -111,7 +120,8 @@ export default function Afilters({ applyFilters }) {
         name="organisation"
         value={filters.organisation}
         onChange={handleChange}
-        className="w-full p-2 mb-3 rounded bg-gray-700"
+
+        className="w-full p-2 mb-3 rounded bg-white text-black"
       />
 
       <label className="block mb-2">Availability</label>
@@ -133,13 +143,13 @@ export default function Afilters({ applyFilters }) {
       <div className="flex justify-between mt-4">
         <button
           onClick={handleApplyFilters}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
+          className="bg-[#1e293b] text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
         >
           Apply Filters
         </button>
         <button
           onClick={handleReset}
-          className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
+          className="bg-[#1e293b] text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
         >
           Reset
         </button>
