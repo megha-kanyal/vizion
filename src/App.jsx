@@ -11,6 +11,7 @@ import Techtalks from './pages/Techtalks';
 import AddEvents from './pages/AddEvents';
 import CreateJobs from './pages/CreateJobs';
 
+
 function App() {
   return (
     <Router>
