@@ -219,7 +219,7 @@ const InternshipFilters = ({ onFilterChange }) => {
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       {/* Filter Header */}
       <div 
-        className="bg-blue-500 p-4 text-white flex justify-between items-center cursor-pointer"
+        className="bg-[#42b6b5] p-4 text-white flex justify-between items-center cursor-pointer"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         <div className="flex items-center">
