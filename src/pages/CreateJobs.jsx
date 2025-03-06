@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 export default function CreateJobs() {
   const [formData, setFormData] = useState({
     companyName: '',
@@ -15,11 +15,25 @@ export default function CreateJobs() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); // Replace this with API call to save data
-    alert('Internship/Job event added successfully!');
+    try {
+      const res = await axios.post("http://localhost:5000/api/jobs", formData);
+      alert(res.data.message);
+      setFormData({
+        companyName: '',
+        experience: '',
+        role: '',
+        qualification: '',
+        location: '',
+        jobType: '',
+        description: '',
+      });
+    } catch (error) {
+      alert("Error adding job event.");
+    }
   };
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-6">
