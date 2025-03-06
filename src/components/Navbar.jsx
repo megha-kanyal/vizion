@@ -10,13 +10,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='bg-[#2F2F2F] py-4'>
+    <nav className='bg-[##1e293b] py-4'>
       <div className='container mx-auto px-4'>
         <div className='flex items-center justify-between'>
-   
-          <div className='bg-[#FFCB74] h-12 w-12 rounded-full'></div>
-          
-          <ul className='text-[#FFCB74] hidden md:flex space-x-6'>
+          <div className='bg-[#FFCB74] h-12 w-12 rounded-full'></div> 
+          <ul className='text-white hidden md:flex space-x-6'>
             <li className='hover:text-white transition-colors'>
               <Link to="/internship">Job/Internship Opportunities</Link>
             </li>
