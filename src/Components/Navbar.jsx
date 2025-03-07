@@ -41,7 +41,7 @@ const Navbar = () => {
               <Link to="/internship" className="font-medium">Job/Internship Opportunities</Link>
             </li>
             <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
-              <Link to="/alumni" className="font-medium">Alumni Connect</Link>
+              <Link to="/alumini" className="font-medium">Alumni Connect</Link>
             </li>
             <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
               <Link to="/events" className="font-medium">Event Hub</Link>

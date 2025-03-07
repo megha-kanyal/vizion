@@ -106,7 +106,7 @@ export default function Internships() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Navbar/>
-      <div className="flex flex-col md:flex-row flex-grow">
+      <div className="flex flex-col md:flex-row flex-grow ">
         {/* Left Side - Filters Section */}
         <div className="w-full md:w-1/4 p-4 bg-white shadow-md">
           <h2 className="text-xl font-bold mb-4 text-gray-800">Filters</h2>
