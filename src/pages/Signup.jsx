@@ -46,40 +46,155 @@ const Signup = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
-      <h2 className="text-2xl font-semibold text-center mb-4">Register to Alumni Portal</h2>
+    <div className="flex justify-center items-center min-h-screen bg-blue-50">
+      <div className="w-full max-w-lg mx-auto p-8 bg-white shadow-lg rounded-lg border-3 mt-5 border-[#42b6b5]">
+        <div className="mb-6 text-center">
+          <h2 className="text-2xl font-bold text-[#1e293b]">Register to Alumni Portal</h2>
+          <p className="text-[#1e293b] mt-2">Create your account to connect with alumni network</p>
+        </div>
 
-      <form className="space-y-4" onSubmit={handleRegister}>
-        <input type="text" placeholder="Full Name" className="w-full p-2 border rounded" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
-        <input type="number" placeholder="Graduation Year" className="w-full p-2 border rounded" required value={gradYear} onChange={(e) => setGradYear(e.target.value)} />
+        <form className="space-y-5" onSubmit={handleRegister}>
+          <div>
+            <label className="block text-sm font-medium text-[#1e293b] mb-1">Full Name</label>
+            <input 
+              type="text" 
+              placeholder="Enter your full name" 
+              className="w-full p-3 bg-[#42b6b5] placeholder-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#42b6b5]" 
+              required 
+              value={fullName} 
+              onChange={(e) => setFullName(e.target.value)} 
+            />
+          </div>
 
-        <select className="w-full p-2 border rounded" value={department} onChange={(e) => setDepartment(e.target.value)}>
-          <option>Computer Science</option>
-          <option>Electronics</option>
-          <option>Mechanical</option>
-          <option>Civil</option>
-          <option>Other</option>
-        </select>
+          <div>
+            <label className="block text-sm font-medium text-[#1e293b]  mb-1">Graduation Year</label>
+            <input 
+              type="number" 
+              placeholder="YYYY" 
+              className="w-full p-3 bg-[#42b6b5] placeholder-white border text-white  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#42b6b5] " 
+              required 
+              value={gradYear} 
+              onChange={(e) => setGradYear(e.target.value)} 
+            />
+          </div>
 
-        <select className="w-full p-2 border rounded" value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option>Student</option>
-          <option>Alumni</option>
-        </select>
+          <div>
+            <label className="block text-sm font-medium text-[#1e293b] mb-1">Department</label>
+            <select 
+              className="w-full p-3 border text-white bg-[#42b6b5] placeholder-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#42b6b5] " 
+              value={department} 
+              onChange={(e) => setDepartment(e.target.value)}
+            >
+              <option>Computer Science</option>
+              <option>Electronics</option>
+              <option>Mechanical</option>
+              <option>Civil</option>
+              <option>Other</option>
+            </select>
+          </div>
 
-        {status === "Alumni" && (
-          <>
-            <input type="text" placeholder="Company Name" className="w-full p-2 border rounded" required value={company} onChange={(e) => setCompany(e.target.value)} />
-            <input type="text" placeholder="Job Title" className="w-full p-2 border rounded" required value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
-            <input type="url" placeholder="LinkedIn Profile" className="w-full p-2 border rounded" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} />
-          </>
-        )}
+          <div>
+            <label className="block text-sm font-medium text-[#1e293b] mb-1">Status</label>
+            <select 
+              className="w-full p-3 text-white bg-[#42b6b5] placeholder-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#42b6b5]" 
+              value={status} 
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <option>Student</option>
+              <option>Alumni</option>
+            </select>
+          </div>
 
-        <input type="email" placeholder="Email" className="w-full p-2 border rounded" required value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Password" className="w-full p-2 border rounded" required value={password} onChange={(e) => setPassword(e.target.value)} />
-        <input type="password" placeholder="Confirm Password" className="w-full p-2 border rounded" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+          {status === "Alumni" && (
+            <div className="space-y-5 pt-2 border-t border-gray-200">
+              <div>
+                <label className="block text-sm font-medium text-[#1e293b] mb-1">Company Name</label>
+                <input 
+                  type="text" 
+                  placeholder="Where do you work?" 
+                  className="w-full p-3 border text-white bg-[#42b6b5] placeholder-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#42b6b5]" 
+                  required 
+                  value={company} 
+                  onChange={(e) => setCompany(e.target.value)} 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#1e293b] mb-1">Job Title</label>
+                <input 
+                  type="text" 
+                  placeholder="Your current position" 
+                  className="w-full p-3 border bg-[#42b6b5] placeholder-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#42b6b5]" 
+                  required 
+                  value={jobTitle} 
+                  onChange={(e) => setJobTitle(e.target.value)} 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-[#1e293b] mb-1">LinkedIn Profile</label>
+                <input 
+                  type="url" 
+                  placeholder="https://linkedin.com/in/yourprofile" 
+                  className="w-full p-3 border bg-[#42b6b5] placeholder-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#42b6b5]" 
+                  value={linkedin} 
+                  onChange={(e) => setLinkedin(e.target.value)} 
+                />
+              </div>
+            </div>
+          )}
 
-        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Register</button>
-      </form>
+          <div className="pt-4 border-t border-gray-200">
+            <label className="block text-sm font-medium text-[#1e293b] mb-1">Email Address</label>
+            <input 
+              type="email" 
+              placeholder="you@example.com" 
+              className="w-full p-3 border border-gray-300 rounded-md text-white bg-[#42b6b5] placeholder-white focus:outline-none focus:ring-2 focus:ring-[#42b6b5]" 
+              required 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-[#1e293b] mb-1">Password</label>
+            <input 
+              type="password" 
+              placeholder="Create a password" 
+              className="w-full p-3 border text-white bg-[#42b6b5] placeholder-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#42b6b5]" 
+              required 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-[#1e293b] mb-1">Confirm Password</label>
+            <input 
+              type="password" 
+              placeholder="Confirm your password" 
+              className="w-full p-3 text-white bg-[#42b6b5] placeholder-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#42b6b5]" 
+              required 
+              value={confirmPassword} 
+              onChange={(e) => setConfirmPassword(e.target.value)} 
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            className="w-full bg-[#04514f] text-white py-3 px-4 rounded-md hover:bg-[#1e293b] transition-colors duration-300 font-medium"
+          >
+            Create Account
+          </button>
+          
+          <div className="text-center mt-4">
+            <p className="text-gray-600">
+              Already have an account? 
+              <a href="/login" className="text-[#42b6b5] ml-1 hover:text-[#1e293b]">
+                Log in
+              </a>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -35,8 +35,8 @@ export default function AddEvents() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 p-6">
-      <div className="max-w-xl w-full bg-white/20 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-white/10">
+    <div className="flex justify-center items-center min-h-screen  p-6">
+      <div className="max-w-xl w-full bg-[#42b6b5]  backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-white/10">
         <h2 className="text-3xl font-bold text-center text-white mb-6">
           🎉 Add New Event
         </h2>
@@ -82,12 +82,14 @@ export default function AddEvents() {
             className="w-full p-3 border border-gray-300 rounded-lg bg-white/30 text-white focus:ring-2 focus:ring-blue-400"
             required
           >
-            <option value="">Select Event Type</option>
-            <option value="Workshop">🛠 Workshop</option>
-            <option value="Seminar">🎤 Seminar</option>
-            <option value="Internship">💼 Internship</option>
-            <option value="Webinar">💻 Webinar</option>
-            <option value="Networking">🤝 Networking</option>
+
+            <option value="" className="text-black">Select Event Type</option>
+            <option value="Workshop" className="text-black">🛠️ Workshop</option>
+            <option value="Seminar" className="text-black">🎤 Seminar</option>
+            <option value="Internship" className="text-black">💼 Internship</option>
+            <option value="Webinar" className="text-black">💻 Webinar</option>
+            <option value="Networking" className="text-black">🤝 Networking</option>
+
           </select>
           <textarea
             name="description"
@@ -98,7 +100,7 @@ export default function AddEvents() {
           />
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+            className="w-full bg-[#0e6362] hover:bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
           >
             🚀 Add Event
           </button>
