@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../Components/Navbar";
+import Footer from "../components/Footer";
 import { 
   FaEdit, 
   FaEnvelope, 
@@ -22,7 +23,7 @@ const ProfileCard = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [profile, setProfile] = useState({
     name: "Aryan Sharma",
-    profilePhoto: "https://via.placeholder.com/100",
+    profilePhoto: "/photo.jpg",
     department: "Computer Science",
     degree: "B.Tech",
     university: "XYZ University",
@@ -108,7 +109,7 @@ const ProfileCard = () => {
         {darkMode ? <FaSun className="text-yellow-300" /> : <FaMoon className="text-gray-600" />}
       </button>
       
-      <div className="container  mx-auto px-4 py-8">
+      <div className="container  mx-auto px-4 py-8 shadow-2xl">
         <div className="flex flex-col bg-[#1e293b] lg:flex-row gap-8">
           {/* Profile Card - Left Side */}
           <motion.div 
@@ -576,6 +577,10 @@ const ProfileCard = () => {
             </div>
           </motion.div>
         </div>
+      </div>
+      <div className="">
+      <Footer/>
+
       </div>
     </div>
   );

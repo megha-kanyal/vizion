@@ -1,54 +1,36 @@
-// import React from "react";
-// import Navbar from "../Components/Navbar";
-// import Sidebar from "../Components/Sidebar";
-// import Feed from "../Components/Feed";
-// import Trending from "../Components/Trending";
-
-// const LandingPage = () => {
-//   return (
-//     <div className="bg-gray-100 min-h-screen">
-//       <Navbar />
-//       <div className="flex justify-center gap-12 p-4">
-//         <div className="w-1/4">
-//           <Sidebar />
-//         </div>
-//         <div className="w-1/2">
-//           <Feed />
-//         </div>
-//         <div className="w-1/4">
-//           <Trending />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LandingPage;
-
 
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
 import Feed from "../Components/Feed";
 import Trending from "../Components/Trending";
+import Footer from "../components/Footer";
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#f5f7fa] min-h-screen">
+    <div className="bg-gray-100 min-h-screen">
+      {/* Navbar would be imported and rendered here */}
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="flex flex-col md:flex-row gap-5">
-          <div className="w-full md:w-1/4 md:sticky md:top-20 md:self-start">
+      
+      <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row gap-6">
+          {/* Left sidebar - Profile information */}
+          <div className="md:w-1/4">
             <Sidebar />
           </div>
-          <div className="w-full md:w-1/2">
+          
+          {/* Main content - Feed */}
+          <div className="md:w-2/4">
             <Feed />
           </div>
-          <div className="w-full md:w-1/4 md:sticky md:top-20 md:self-start">
+          
+          {/* Right sidebar - Trending */}
+          <div className="md:w-1/4">
             <Trending />
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

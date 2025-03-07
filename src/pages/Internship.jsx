@@ -1,8 +1,11 @@
+
 import React, { useState } from "react";
 import InternshipFilters from "../components/Ifilters";
 import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Briefcase, Clock, GraduationCap, DollarSign } from "lucide-react";
 import CreateJobs from "./CreateJobs";
+import Footer from "../components/Footer";
+import Navbar from "../Components/Navbar";
 
 export default function Internships() {
   const mockInternships = [
@@ -101,94 +104,99 @@ export default function Internships() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
-      {/* Left Side - Filters Section */}
-      <div className="w-full md:w-1/4 p-4 bg-white shadow-md">
-        <h2 className="text-xl font-bold mb-4 text-gray-800">Filters</h2>
-        <InternshipFilters onFilterChange={handleFilterChange} />
-      </div>
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <Navbar/>
+      <div className="flex flex-col md:flex-row flex-grow">
+        {/* Left Side - Filters Section */}
+        <div className="w-full md:w-1/4 p-4 bg-white shadow-md">
+          <h2 className="text-xl font-bold mb-4 text-gray-800">Filters</h2>
+          <InternshipFilters onFilterChange={handleFilterChange} />
+        </div>
 
-      {/* Middle - Internships Section */}
-      <div className="flex-1 p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">Available Internships</h1>
-          <div className="flex">
-            <span className="bg-[#42b6b5] mx-3 text-white px-3 py-1 rounded-md text-sm">
-              {filteredInternships.length} Internships Found
-            </span>
-            {/* button link */}
-            <Link to="/CreateJobs" className="bg-[#42b6b5] text-white px-4 py-2 rounded-md">Add Events</Link>
-           
+        {/* Middle - Internships Section */}
+        <div className="flex-1 p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-2xl font-bold text-gray-800">Available Internships</h1>
+            <div className="flex">
+              <span className="bg-[#42b6b5] mx-3 text-white px-3 py-1 rounded-md text-sm">
+                {filteredInternships.length} Internships Found
+              </span>
+              {/* button link */}
+              <Link to="/CreateJobs" className="bg-[#42b6b5] text-white px-4 py-2 rounded-md">Add Jobs</Link>
+            </div>
+          </div>
+
+          {/* Internship Cards Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {filteredInternships.length > 0 ? (
+              filteredInternships.map((internship) => (
+                <div 
+                  key={internship.id} 
+                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                  onClick={() => setSelectedInternship(internship)}
+                >
+                  <div className="bg-[#42b6b5] h-1 w-full"></div>
+                  <div className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h2 className="text-xl font-semibold text-gray-800">{internship.title}</h2>
+                      <span className="bg-blue-100 text-[#42b6b5] text-xs font-medium px-2.5 py-0.5 rounded">
+                        {internship.field}
+                      </span>
+                    </div>
+                    
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center text-gray-600">
+                        <Briefcase className="w-4 h-4 mr-2" />
+                        <span>{internship.company}</span>
+                      </div>
+                      
+                      <div className="flex items-center text-gray-600">
+                        <MapPin className="w-4 h-4 mr-2" />
+                        <span>{internship.location}</span>
+                      </div>
+                      
+                      <div className="flex items-center text-gray-600">
+                        <Clock className="w-4 h-4 mr-2" />
+                        <span>{internship.duration}</span>
+                      </div>
+
+                      <div className="flex items-center text-gray-600">
+                        <DollarSign className="w-4 h-4 mr-2" />
+                        <span>{internship.stipend}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="text-sm text-gray-500 mb-4">
+                      Application Deadline: {formatDate(internship.deadline)}
+                    </div>
+                    
+                    <button className="w-full bg-[#42b6b5] hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 flex items-center justify-center">
+                      Apply Now
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12 bg-white rounded-lg shadow">
+                <div className="text-gray-400 mb-2">
+                  <Briefcase className="w-12 h-12 mx-auto opacity-50" />
+                </div>
+                <p className="text-lg text-gray-500">No internships match your search criteria</p>
+                <button 
+                  className="mt-4 text-[#42b6b5] hover:text-blue-600"
+                  onClick={() => handleFilterChange({})}
+                >
+                  Clear filters
+                </button>
+              </div>
+            )}
           </div>
         </div>
-
-        {/* Internship Cards Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {filteredInternships.length > 0 ? (
-            filteredInternships.map((internship) => (
-              <div 
-                key={internship.id} 
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-                onClick={() => setSelectedInternship(internship)}
-              >
-                <div className="bg-[#42b6b5] h-1 w-full"></div>
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-3">
-                    <h2 className="text-xl font-semibold text-gray-800">{internship.title}</h2>
-                    <span className="bg-blue-100 text-[#42b6b5] text-xs font-medium px-2.5 py-0.5 rounded">
-                      {internship.field}
-                    </span>
-                  </div>
-                  
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-gray-600">
-                      <Briefcase className="w-4 h-4 mr-2" />
-                      <span>{internship.company}</span>
-                    </div>
-                    
-                    <div className="flex items-center text-gray-600">
-                      <MapPin className="w-4 h-4 mr-2" />
-                      <span>{internship.location}</span>
-                    </div>
-                    
-                    <div className="flex items-center text-gray-600">
-                      <Clock className="w-4 h-4 mr-2" />
-                      <span>{internship.duration}</span>
-                    </div>
-
-                    <div className="flex items-center text-gray-600">
-                      <DollarSign className="w-4 h-4 mr-2" />
-                      <span>{internship.stipend}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="text-sm text-gray-500 mb-4">
-                    Application Deadline: {formatDate(internship.deadline)}
-                  </div>
-                  
-                  <button className="w-full bg-[#42b6b5] hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 flex items-center justify-center">
-                    Apply Now
-                  </button>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="col-span-full text-center py-12 bg-white rounded-lg shadow">
-              <div className="text-gray-400 mb-2">
-                <Briefcase className="w-12 h-12 mx-auto opacity-50" />
-              </div>
-              <p className="text-lg text-gray-500">No internships match your search criteria</p>
-              <button 
-                className="mt-4 text-[#42b6b5] hover:text-blue-600"
-                onClick={() => handleFilterChange({})}
-              >
-                Clear filters
-              </button>
-            </div>
-          )}
-        </div>
       </div>
-
+      
+      {/* Footer positioned correctly outside the content area */}
+      <Footer />
+      
       {/* Internship Detail Modal */}
       {selectedInternship && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
@@ -233,7 +241,7 @@ export default function Internships() {
                 </div>
                 
                 <div className="flex items-start">
-                  <DollarSign className="w-5 h-5 mr-3 text-b[#42b6b5] mt-1" />
+                  <DollarSign className="w-5 h-5 mr-3 text-[#42b6b5] mt-1" />
                   <div>
                     <h4 className="font-semibold text-gray-700">Stipend</h4>
                     <p className="text-gray-600">{selectedInternship.stipend}</p>

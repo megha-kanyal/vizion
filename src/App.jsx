@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Events from './pages/Events';
 import Internship from './pages/Internship';
-import Alumini from './pages/Alumini';
+import Alumini from './pages/Alumini'; 
 import Profile from './pages/Profile';
 import Techtalks from './pages/Techtalks';
 import AddEvents from './pages/AddEvents';
@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home  />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/events" element={<Events />} />
