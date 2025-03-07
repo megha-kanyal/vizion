@@ -15,8 +15,11 @@ const Login = () => {
       const response = await axios.post("http://localhost:5000/api/auth/login", { email, password });
       
       if (response.data.success) {
+        // Store user data in localStorage
+        localStorage.setItem("user", JSON.stringify(response.data.user)); 
+        
         alert("Login Successful!");
-        navigate("/");
+        navigate("/");  // Navigate to the homepage or a protected route
       } else {
         alert(response.data.message);
       }
@@ -27,6 +30,7 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">

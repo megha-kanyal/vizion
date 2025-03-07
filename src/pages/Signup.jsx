@@ -21,7 +21,7 @@ const Signup = () => {
       alert("Passwords do not match!");
       return;
     }
-
+  
     try {
       const response = await axios.post("http://localhost:5000/api/auth/signup", {
         fullName,
@@ -34,10 +34,14 @@ const Signup = () => {
         jobTitle: status === "Alumni" ? jobTitle : "",
         linkedin: status === "Alumni" ? linkedin : "",
       });
-
-      alert(response.data.message);
+  
+      console.log(response.data);  // Debugging the response
+  
       if (response.data.success) {
-        navigate("/login"); // Redirect to login page on successful signup
+        alert(response.data.message); // Show success message
+        navigate("/login"); // Redirect to login
+      } else {
+        alert("Signup failed. Try again.");
       }
     } catch (error) {
       console.error("Signup Error:", error);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Afilters from "../Components/Afilters";
 import Footer from "../components/Footer"; // Fixed capitalization for consistency
 import Navbar from "../Components/Navbar";
+import { Link } from "react-router-dom";
 
 const alumniData = [
   { id: 1, name: "Alice Johnson", graduationYear: 2015, department: "CSE", jobRole: "Software Engineer", experienceLevel: "Mid-Level", techStack: "React, Node.js", organisation: "Google", availability: ["Open to Mentorship", "Open to Networking"] },
@@ -142,11 +143,13 @@ export default function Alumini() {
                     
                     {/* Connect Button */}
                     <div className="px-6 py-4 bg-white border-t border-gray-100">
-                      <button 
-                        className="w-full bg-[#42b6b5] text-white py-2 rounded-lg font-medium hover:from-blue-600 hover:to-indigo-700 transition-colors duration-300 shadow-sm"
-                      >
-                        Connect with {alum.name.split(' ')[0]}
-                      </button>
+                    <Link to={`/alumniProfile/${alum.id}`}>
+  <button 
+    className="w-full bg-[#42b6b5] text-white py-2 rounded-lg font-medium hover:from-blue-600 hover:to-indigo-700 transition-colors duration-300 shadow-sm"
+  >
+    Connect with {alum.name.split(' ')[0]}
+  </button>
+</Link>
                     </div>
                   </div>
                 ))}

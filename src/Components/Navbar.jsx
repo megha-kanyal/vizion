@@ -91,7 +91,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="hover:bg-slate-600 transition-colors">
-                <Link to="/alumni" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
+                <Link to="/alumini" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
                   Alumni Connect
                 </Link>
               </li>
