@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is logged in (using localStorage or session)
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user"); // Clear stored user data
+    setIsAuthenticated(false);
+    navigate("/login"); // Redirect to login page
   };
 
   return (
@@ -25,7 +41,7 @@ const Navbar = () => {
               <Link to="/internship" className="font-medium">Job/Internship Opportunities</Link>
             </li>
             <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
-              <Link to="/alumini" className="font-medium">Alumini Connect</Link>
+              <Link to="/alumni" className="font-medium">Alumni Connect</Link>
             </li>
             <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
               <Link to="/events" className="font-medium">Event Hub</Link>
@@ -33,9 +49,26 @@ const Navbar = () => {
             <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
               <Link to="/techtalks" className="font-medium">TechTalks</Link>
             </li>
-            <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
-              <Link to="/profile" className="font-medium">Profile</Link>
-            </li>
+
+            {isAuthenticated ? (
+              <>
+                <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
+                  <Link to="/profile" className="font-medium">Profile</Link>
+                </li>
+                <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all cursor-pointer">
+                  <button onClick={handleLogout} className="font-medium">Logout</button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
+                  <Link to="/signup" className="font-medium">Sign Up</Link>
+                </li>
+                <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
+                  <Link to="/login" className="font-medium">Login</Link>
+                </li>
+              </>
+            )}
           </ul>
 
           <div className="md:hidden">
@@ -53,50 +86,53 @@ const Navbar = () => {
           <div className="md:hidden mt-4 bg-slate-700 rounded-md shadow-lg">
             <ul className="text-gray-200 flex flex-col py-2">
               <li className="hover:bg-slate-600 transition-colors">
-                <Link 
-                  to="/internship" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 font-medium"
-                >
+                <Link to="/internship" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
                   Job/Internship Opportunities
                 </Link>
               </li>
               <li className="hover:bg-slate-600 transition-colors">
-                <Link 
-                  to="/alumni" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 font-medium"
-                >
+                <Link to="/alumni" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
                   Alumni Connect
                 </Link>
               </li>
               <li className="hover:bg-slate-600 transition-colors">
-                <Link 
-                  to="/events" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 font-medium"
-                >
+                <Link to="/events" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
                   Event Hub
                 </Link>
               </li>
               <li className="hover:bg-slate-600 transition-colors">
-                <Link 
-                  to="/techtalks" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 font-medium"
-                >
+                <Link to="/techtalks" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
                   TechTalks
                 </Link>
               </li>
-              <li className="hover:bg-slate-600 transition-colors">
-                <Link 
-                  to="/profile" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 font-medium"
-                >
-                  Profile
-                </Link>
-              </li>
+
+              {isAuthenticated ? (
+                <>
+                  <li className="hover:bg-slate-600 transition-colors">
+                    <Link to="/profile" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
+                      Profile
+                    </Link>
+                  </li>
+                  <li className="hover:bg-slate-600 transition-colors">
+                    <button onClick={handleLogout} className="block px-4 py-3 font-medium w-full text-left">
+                      Logout
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="hover:bg-slate-600 transition-colors">
+                    <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
+                      Sign Up
+                    </Link>
+                  </li>
+                  <li className="hover:bg-slate-600 transition-colors">
+                    <Link to="/login" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
+                      Login
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         )}

@@ -83,7 +83,7 @@ export default function AddEvents() {
             required
           >
             <option value="">Select Event Type</option>
-            <option value="Workshop">🛠️ Workshop</option>
+            <option value="Workshop">🛠 Workshop</option>
             <option value="Seminar">🎤 Seminar</option>
             <option value="Internship">💼 Internship</option>
             <option value="Webinar">💻 Webinar</option>

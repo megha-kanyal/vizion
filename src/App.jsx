@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
@@ -13,6 +14,9 @@ import CreateJobs from './pages/CreateJobs';
 
 
 function App() {
+  const [events, setEvents] = useState([]);
+
+  
   return (
     <Router>
       <Routes>
@@ -25,8 +29,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/techtalks" element={<Techtalks/>} />
 
-        <Route path='/addevents' element={<AddEvents/>}/> 
-        <Route path='/CreateJobs' element={<CreateJobs/>}/>
+        <Route path="/events" element={<Events events={events} />} />
+        <Route path="/addevents" element={<AddEvents setEvents={setEvents} />} />
       </Routes>
     </Router>
   );
