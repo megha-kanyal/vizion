@@ -23,7 +23,7 @@ const Signup = () => {
     }
     
     try {
-      const response = await axios.post("https://vizion-backend.onrender.com/api/auth/signup", {
+      const response = await axios.post("http://localhost:5000/api/auth/signup", {
         fullName,
         gradYear,
         department,

@@ -18,7 +18,7 @@ export default function CreateJobs() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://vizion-backend.onrender.com/api/jobs", formData);
+      const res = await axios.post("http://localhost:5000/api/jobs", formData);
       alert(res.data.message);
       setFormData({
         companyName: '',

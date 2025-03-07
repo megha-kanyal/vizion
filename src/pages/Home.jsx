@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 const LandingPage = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
-      {/* Navbar would be imported and rendered here */}
+      
       <Navbar />
       
       <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
