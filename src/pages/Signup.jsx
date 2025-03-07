@@ -21,9 +21,9 @@ const Signup = () => {
       alert("Passwords do not match!");
       return;
     }
-
+    
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/signup", {
+      const response = await axios.post("https://vizion-backend.onrender.com/api/auth/signup", {
         fullName,
         gradYear,
         department,
@@ -34,14 +34,19 @@ const Signup = () => {
         jobTitle: status === "Alumni" ? jobTitle : "",
         linkedin: status === "Alumni" ? linkedin : "",
       });
-
-      alert(response.data.message);
-      if (response.data.success) {
-        navigate("/login"); // Redirect to login page on successful signup
+  
+      console.log(response.data);  // Debugging the response
+  
+      // Check if the response is successful
+      if (response.status === 201 || response.data.success) {
+        alert(response.data.message || "Signup successful!"); 
+        navigate("/login"); // Redirect to login page
+      } else {
+        alert("Signup failed. Try again.");
       }
     } catch (error) {
       console.error("Signup Error:", error);
-      alert("Signup failed. Try again.");
+      alert(error.response?.data?.message || "Signup failed. Try again.");
     }
   };
 

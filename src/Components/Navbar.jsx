@@ -38,7 +38,7 @@ const Navbar = () => {
 
           <ul className="text-gray-200 hidden md:flex space-x-8">
             <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
-              <Link to="/internship" className="font-medium">Job/Internship Opportunities</Link>
+              <Link to="/internship" className="font-medium">Internship</Link>
             </li>
             <li className="hover:text-white hover:border-b-2 hover:border-blue-400 pb-1 transition-all">
               <Link to="/alumini" className="font-medium">Alumni Connect</Link>
@@ -91,7 +91,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="hover:bg-slate-600 transition-colors">
-                <Link to="/alumni" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
+                <Link to="/alumini" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 font-medium">
                   Alumni Connect
                 </Link>
               </li>
